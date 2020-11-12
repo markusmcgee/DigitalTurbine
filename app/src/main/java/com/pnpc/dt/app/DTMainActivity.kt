@@ -3,6 +3,7 @@ package com.pnpc.dt.app
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleRegistry
@@ -12,7 +13,7 @@ import com.pnpc.dt.app.view.DTDetailFragment
 import com.pnpc.dt.app.view.DTListFragment
 import com.pnpc.dt.app.viewmodel.AdsViewModel
 
-class DTMainActivity : FragmentActivity() {
+class DTMainActivity : AppCompatActivity() {
 
     private lateinit var viewBinding: DtMainActivityViewBinding
     private lateinit var lifecycleRegistry: LifecycleRegistry
@@ -25,6 +26,8 @@ class DTMainActivity : FragmentActivity() {
 
         viewBinding = DtMainActivityViewBinding.inflate(LayoutInflater.from(this))
         setContentView(viewBinding.root)
+        supportActionBar?.title = "Digital Turbine App"
+        supportActionBar?.show()
 
         val adsViewModel: AdsViewModel by viewModels()
 
@@ -46,6 +49,10 @@ class DTMainActivity : FragmentActivity() {
             fragmentTransaction.add(R.id.main_fragment_container, adDetailFragment)
                 fragmentTransaction.addToBackStack(DTDetailFragment.DT_DETAIL)
             fragmentTransaction.commit()
+
+            supportActionBar?.title = (it as Map<*, *>)["productName"].toString()
+            supportActionBar?.show()
+
         })
     }
 }
