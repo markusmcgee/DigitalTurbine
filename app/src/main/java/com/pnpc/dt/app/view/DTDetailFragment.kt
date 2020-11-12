@@ -54,9 +54,7 @@ class DTDetailFragment : Fragment() {
         binding.tstiEligible.text = (currentAd as Map<*, *>)["tstiEligible"].toString()
         binding.stiEnabled.text = (currentAd as Map<*, *>)["stiEnabled"].toString()
         binding.postInstallActions.text = (currentAd as Map<*, *>)["postInstallActions"].toString()
-
-
-        (itemData as Map<*, *>)["productName"].toString()
+        
 
         return binding.root
     }
